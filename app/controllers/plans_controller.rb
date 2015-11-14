@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:create, :destroy, :edit]
+  skip_before_filter :verify_authenticity_token, :only => [:create, :destroy, :edit, :update]
   respond_to :json
 
   def index
@@ -15,6 +15,11 @@ class PlansController < ApplicationController
 
   def create
     respond_with Plan.create(plan_params)
+  end
+
+  def update
+    plan = Plan.find(params[:id])
+    respond_with plan.update_attributes(plan_params)
   end
 
   def destroy
