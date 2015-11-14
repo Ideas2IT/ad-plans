@@ -7,7 +7,9 @@
           <th>Plan Name</th>
           <th>Plan Description</th>
           <th>Price (in $)</th>
-          <th>&nbsp;</th>
+          <% unless user_signed_in? %>
+            <th>&nbsp;</th>
+            <% end %>
         </tr>
       </thead>
       <tbody>
@@ -21,7 +23,11 @@
           <td><%= plan.name  %></td>
           <td><%= plan.description  %></td>
           <td><%= plan.price %></td>
-          <td><a class="btn btn-primary">Subscribe</a></td>
+          <% unless user_signed_in? %>
+          <td>
+          <%= button_to('Subscribe', user_registration_path, :class => 'btn btn-large btn-primary')  %>
+          </td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
