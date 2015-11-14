@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:create, :destroy]
+  skip_before_filter :verify_authenticity_token, :only => [:create, :destroy, :edit]
   respond_to :json
 
   def index
@@ -7,6 +7,10 @@ class PlansController < ApplicationController
       format.json {render :json => Plan.all, :include => {:features => {:only => [:id, :name, :limit]}}, :except => [:created_at, :updated_at]}
       format.html
     end
+  end
+
+  def edit
+    respond_with Plan.find(params[:id])
   end
 
   def create
