@@ -3,7 +3,7 @@ class PlansController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { render json: Plan.all }
+      format.json {render :json => Plan.all, :include => {:features => {:only => [:id, :name, :limit]}}, :except => [:created_at, :updated_at]}
       format.html
     end
   end
