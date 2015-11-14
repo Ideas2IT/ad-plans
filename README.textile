@@ -1,0 +1,5 @@
+h1.  Ad Subscriptions Demo App
+
+Rails and Angular demo application that provides authentication and  subscriptions for digital advertising.
+
+"View Demo":https://ad-plans.herokuapp.com/
