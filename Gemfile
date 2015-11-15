@@ -16,6 +16,7 @@ group :development do
   gem 'spring'
 end
 gem 'bootstrap-sass'
+gem 'bootstrap_form'
 gem 'devise'
 gem 'angularjs-rails', '~> 1.2.25'
 group :development do

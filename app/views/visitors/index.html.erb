@@ -7,28 +7,38 @@
           <th>Plan Name</th>
           <th>Plan Description</th>
           <th>Price (in $)</th>
-          <% unless user_signed_in? %>
-            <th>&nbsp;</th>
-            <% end %>
+          <th>&nbsp;</th>
         </tr>
       </thead>
       <tbody>
-      <% if @plans.empty? %>
-        <tr>
-          <td colspan="4">No Plans Yet!</td>
-        </tr>
-       <% end %>
+        <% if @plans.empty? %>
+          <tr>
+            <td colspan="4">No Plans Yet!</td>
+          </tr>
+        <% end %>
         <% @plans.each do|plan| %>
-         <tr >
-          <td><%= plan.name  %></td>
-          <td><%= plan.description  %></td>
-          <td><%= plan.price %></td>
-          <% unless user_signed_in? %>
-          <td>
-          <%= button_to('Subscribe', user_registration_path, :class => 'btn btn-large btn-primary')  %>
-          </td>
-          <% end %>
-        </tr>
+          <tr>
+            <td><%= plan.name  %></td>
+            <td><%= plan.description  %></td>
+            <td><%= plan.price %></td>
+            <td>
+              <% if user_signed_in? %>
+                <% unless current_user.plans.include? plan %>
+                  <%= bootstrap_form_for(@subscription) do |f| %>
+                    <%= f.hidden_field :plan_id,  value: plan.id %>
+                    <%= f.hidden_field :user_id,  value: current_user.id rescue '' %>
+                    <%= f.submit "Subscribe" %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%= bootstrap_form_for(@subscription) do |f| %>
+                  <%= f.hidden_field :plan_id,  value: plan.id %>
+                  <%= f.hidden_field :user_id,  value: current_user.id rescue '' %>
+                  <%= f.submit "Subscribe" %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>
