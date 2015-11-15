@@ -23,19 +23,11 @@
             <td><%= plan.price %></td>
             <td>
               <% if user_signed_in? %>
-                <% unless current_user.plans.include? plan %>
-                  <%= bootstrap_form_for(@subscription) do |f| %>
-                    <%= f.hidden_field :plan_id,  value: plan.id %>
-                    <%= f.hidden_field :user_id,  value: current_user.id rescue '' %>
-                    <%= f.submit "Subscribe" %>
-                  <% end %>
+                <% if not_subscribed?(plan) %>
+                  <%= render partial: 'subscription', locals: {plan: plan} %>
                 <% end %>
               <% else %>
-                <%= bootstrap_form_for(@subscription) do |f| %>
-                  <%= f.hidden_field :plan_id,  value: plan.id %>
-                  <%= f.hidden_field :user_id,  value: current_user.id rescue '' %>
-                  <%= f.submit "Subscribe" %>
-                <% end %>
+                <%= render partial: 'subscription', locals: {plan: plan} %>
               <% end %>
             </td>
           </tr>
