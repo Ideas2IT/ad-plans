@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   after_action :set_csrf_cookie_for_ng
 
+  #set the auth token in cookies for later verification
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
+  #Check the token sent in the request header is valid
   def verified_request?
     super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
   end
