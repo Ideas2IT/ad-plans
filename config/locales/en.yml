@@ -21,3 +21,4 @@
 
 en:
   hello: "Hello world"
+  subscribed: "Thank you %{current_user_name}. Your subscription for the %{plan_name} plan is successful"

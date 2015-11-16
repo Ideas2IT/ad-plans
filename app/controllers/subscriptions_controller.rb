@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   def create
     subscription = Subscription.new(permitted)
     if subscription.save
-     flash[:notice] = "Thank you #{current_user.name}. Your subscription for #{subscription.plan.name} plan is successful"
+      flash[:notice] = t(:subscribed, current_user_name: current_user.name, plan_name: subscription.plan.name )
     end
     redirect_to root_path
   end
