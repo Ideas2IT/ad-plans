@@ -2,7 +2,91 @@
   <h1>Plans</h1>
 
   <div ng-controller="plansController">
-  	<h3>Current Plans</h3>
+    <div class="row">
+      <div class="col-xs-12" style="margin:10">
+        <input type="button" value="Create Plan" ng-click="createNewPlan()" class="btn btn-primary" style="float:right;" />
+      </div>
+    </div>
+    <div id="planForm" class="well m-top-20" ng-hide="true">
+      <h3>Add a new plan</h3>
+      <form ng-submit="addPlan()">
+        <div class="row">
+          <br />
+          <div class="col-xs-3">
+            <span>Plan Name</span>
+          </div>
+          <div class="col-xs-3">
+            <input type="text" ng-model="newPlan.name" class="form-control" placeholder="Plan Name" />
+          </div>
+        </div>
+        <div class="row">
+          <br />
+          <div class="col-xs-3">
+            <span>Plan Description</span>
+          </div>
+          <div class="col-xs-3">
+            <input type="text" ng-model="newPlan.description" class="form-control" placeholder="Plan Description" />
+          </div>
+        </div>
+        <div class="row">
+          <br />
+          <div class="col-xs-3">
+            <span>Price in $</span>
+          </div>
+          <div class="col-xs-3">
+            <input type="text" ng-model="newPlan.price" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Price in $" />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-xs-3">
+          </div>
+          <div class="col-xs-3">
+            <br />
+            <input type="Submit" value="Add Plan" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="plan_feature" ng-hide="true" class="well m-top-20" ng-controller="featuresController">
+      <form ng-submit="updateFeature()">
+        <h4>Plan Features</h4>
+        <input type="hidden" id="planId" value="{{planId}}" ng-model="newFeature.plan_id"/>
+        <div class="row">
+          <br />
+          <div class="col-xs-3">
+            <span>SMS Limit</span>
+          </div>
+          <div class="col-xs-3">
+            <input type="number" ng-model="newFeature.sms" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="SMS Limit" />
+          </div>
+        </div>
+        <div class="row">
+          <br />
+          <div class="col-xs-3">
+            <span>Email Limit</span>
+          </div>
+          <div class="col-xs-3">
+            <input type="text" ng-model="newFeature.email" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Email Limit" />
+          </div>
+        </div>
+        <div class="row">
+          <br />
+          <div class="col-xs-3">
+            <span>Post Limit</span>
+          </div>
+          <div class="col-xs-3">
+            <input type="text" ng-model="newFeature.post" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Post Limit" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 text-center">
+            <br />
+            <input type="Submit" value="Add Feature" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
     <hr />
     <table class="table table-bordered table-striped">
       <thead>
@@ -10,6 +94,7 @@
           <th>Plan Name</th>
           <th>Plan Description</th>
           <th>Price (in $)</th>
+          <th>Features</th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +104,9 @@
         <tr ng-repeat="plan in plans">
           <td>{{ plan.name }}</td>
           <td>{{ plan.description }}</td>
-          <td>{{ plan.price }}</td>
+          <td>{{ plan.price }}</td>{{plan.features}}
+          <td ng-if="plan.features == '' || plan.features == null"><a ng-controller="featuresController" class="btn btn-primary" ng-click="addFeature(plan.id)">Add Feature</a></td>
+          <td ng-if="plan.features != null || plan.features != ''"><ul style="list-style-type: none;"><li ng-repeat="feature in plan.features">{{feature.name}} limit : {{feature.limit}}</li></ul></td>
         </tr>
       </tbody>
     </table>

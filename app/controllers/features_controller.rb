@@ -18,7 +18,7 @@ class FeaturesController < ApplicationController
     features.each do |key,value|
       plan.features.create(name: key, limit: value)
     end
-    head :ok
+    respond_with Plan.features
   end
 
   def update
