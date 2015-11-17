@@ -27,6 +27,6 @@ class PlansController < ApplicationController
 
   private
   def plan_params
-    params.require(:plan).permit(:name, :description, :price, features_attributes: [:id, :name, :limit])
+    params.require(:plan).permit(:name, :description, :price)
   end
 end
