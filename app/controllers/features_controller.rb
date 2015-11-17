@@ -18,7 +18,10 @@ class FeaturesController < ApplicationController
     features.each do |key,value|
       plan.features.create(name: key, limit: value)
     end
-    respond_with Plan.features
+    respond_to do |format|
+      format.json {render :json => {features: plan.features}, :except => [:created_at, :updated_at]}
+      format.html
+    end
   end
 
   def update

@@ -1,5 +1,5 @@
 myApp.factory("Feature", function($resource) {
-  return $resource("features/:id", { id: '@id' }, {
+  return $resource("features.json", { id: '@id' }, {
     index:   { method: 'GET', isArray: true, responseType: 'json' },
     update:  { method: 'PUT', responseType: 'json' }
   });
@@ -13,9 +13,8 @@ myApp.controller("featuresController", function($scope, Feature) {
   }
 
   $scope.updateFeature = function() {
-  	$scope.newFeature.planId = $("#planId").val();
+    $scope.newFeature.planId = $("#planId").val();
     feature = Feature.save($scope.newFeature);
     $("#plan_feature").addClass('ng-hide');
-    $scope.plans = Plan.index();
   }
 })
