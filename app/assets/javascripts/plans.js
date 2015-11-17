@@ -13,9 +13,19 @@ myApp.controller("plansController", ['$scope', 'Plan', function($scope, Plan) {
     $scope.plans.push(plan);
     $scope.newPlan = {};
     $("#planForm").addClass('ng-hide');
-  }
+  };
 
   $scope.createNewPlan = function() {
     $("#planForm").removeClass('ng-hide');
-  }
+  };
+
+  $scope.$on("newFeature", function (evt,  features) {
+    var plan_id = features[0].plan_id;
+    for (var i =0; i < $scope.plans.length;  i++) {
+      if ($scope.plans[i].id == plan_id) {
+        $scope.plans[i].features = features;
+      }
+    }
+  });
+
 }]);

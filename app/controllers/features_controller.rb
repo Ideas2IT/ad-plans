@@ -14,7 +14,7 @@ class FeaturesController < ApplicationController
 
   def create
     plan = Plan.find(params[:planId])
-    features = params.except(:planId)
+    features = params.except(:action, :controller, :planId, :format, :feature)
     features.each do |key,value|
       plan.features.create(name: key, limit: value)
     end

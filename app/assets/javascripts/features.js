@@ -5,7 +5,7 @@ myApp.factory("Feature", function($resource) {
   });
 })
 
-myApp.controller("featuresController", function($scope, Feature) {
+myApp.controller("featuresController", function($scope, $rootScope, Feature) {
   $scope.addFeature = function(plan_id) {
     $scope.planId = plan_id;
     $("#planId").val(plan_id);
@@ -14,7 +14,11 @@ myApp.controller("featuresController", function($scope, Feature) {
 
   $scope.updateFeature = function() {
     $scope.newFeature.planId = $("#planId").val();
-    feature = Feature.save($scope.newFeature);
+    feature = Feature.save($scope.newFeature, function(res) {
+    	$rootScope.$broadcast("newFeature", res.features);
+    }, function(err) {
+    	console.error(err);
+    });
     $("#plan_feature").addClass('ng-hide');
   }
 })
