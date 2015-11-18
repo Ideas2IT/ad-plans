@@ -21,10 +21,12 @@
             <td><%= plan.name  %></td>
             <td><%= plan.description  %></td>
             <td><%= plan.price %></td>
-            <td>
+            <td >
               <% if user_signed_in? %>
                 <% if not_subscribed?(plan) %>
                   <%= render partial: 'subscription', locals: {plan: plan} %>
+                  <% else %>
+                    <%= image_tag "tick.png" %>
                 <% end %>
               <% else %>
                 <%= render partial: 'subscription', locals: {plan: plan} %>
