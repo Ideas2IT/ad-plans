@@ -1,5 +1,52 @@
-h1.  Ad Subscriptions Demo App
+h1.  Subscriptions Demo App
 
-Rails and Angular demo application that provides authentication and  subscriptions for digital advertising.
+Rails and Angular responsive web  application that provides ability to subscribe to various plans to the  signed in users and freedom to create new plans and features for the admin users.
 
-"View Demo":https://ad-plans.herokuapp.com/
+h4. Technologies
+
+* Language : Ruby
+* Backend Framework :  Rails
+* Frontend Framework : AngularJS
+* UI Framework : Bootstrap
+* Database  : PostgreSQL
+* Deployment  : Heroku cloud
+* Authentication : Devise
+
+h4. Approach
+
+For each Rails Restful resource, corresponding Angular resource is set up.
+<code>
+$resource("plans.json")
+</code>
+
+Rails parses the request, changes the state of the resource and responds back wth JSON data
+<code>
+ respond_to :json
+ </code>
+ <code>
+ respond_with Plan.create(plan_params)
+ </code>
+
+To guard against Cross-Site Request Forgery, Auth Token is set up in session by Rails and verified in the request.
+<code>
+cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+</code>
+
+h4. Installation
+
+<pre>
+$ git clone git@github.com:Ideas2IT/ad-plans.git
+</pre>
+
+Create config/database.yml with your local  dbconfig and run
+
+<pre>
+$ bin/rake db:create
+$ bin/rake db:seed
+$ bin/rake db:migrate
+$ bin/rails server
+</pre>
+
+h4. Demo
+
+Demo site is hosted at Heroku Cloud. You can "view now.":https://ad-plans.herokuapp.com/
