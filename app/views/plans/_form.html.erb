@@ -5,7 +5,7 @@
     <span>SMS Limit</span>
   </div>
   <div class="col-xs-3">
-    <input type="number" ng-model="newFeature.sms" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="SMS Limit" />
+    <input type="number" ng-model="newFeature.sms" onkeyup="this.value=this.value.replace(/[^0-9]/g,''); " class="form-control" placeholder="SMS Limit" required />
   </div>
 </div>
 <div class="row">
@@ -14,7 +14,7 @@
     <span>Email Limit</span>
   </div>
   <div class="col-xs-3">
-    <input type="text" ng-model="newFeature.email" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Email Limit" />
+    <input type="text" ng-model="newFeature.email" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Email Limit" required />
   </div>
 </div>
 <div class="row">
@@ -23,6 +23,6 @@
     <span>Post Limit</span>
   </div>
   <div class="col-xs-3">
-    <input type="text" ng-model="newFeature.post" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Post Limit" />
+    <input type="text" ng-model="newFeature.post" onkeyup="this.value=this.value.replace(/[^0-9]/g,''); " class="form-control" placeholder="Post Limit" required />
   </div>
 </div>

@@ -58,6 +58,7 @@
           <th>Plan Description</th>
           <th>Price (in $)</th>
           <th>Features</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -68,9 +69,11 @@
           <td>{{ plan.name }}</td>
           <td>{{ plan.description }}</td>
           <td>{{ plan.price }}</td>{{plan.features}}
-          <td ng-if="plan.features == '' || plan.features == null"><a ng-controller="featuresController" class="btn btn-primary" ng-click="addFeature(plan.id)">Add Feature</a></td>
+          <td ng-if="plan.features == '' || plan.features == null" class="middle"><a ng-controller="featuresController" class="btn btn-primary" ng-click="addFeature(plan.id)">Add Feature</a></td>
           <td ng-if="!!plan.features.length"><ul style="list-style-type: none;"><li ng-repeat="feature in plan.features">{{feature.name}} limit : {{feature.limit}}</li></ul></td>
-          <td ><a class="btn btn-primary" ng-click="editFeature(plan.id)">Edit Feature</a></td>
+          <td  align="center" style="vertical-align: middle;">
+            <a  ng-if="!!plan.features.length" class="btn btn-primary" ng-click="editFeature(plan.id)">Edit Feature</a>
+            </td>
         </tr>
       </tbody>
     </table>

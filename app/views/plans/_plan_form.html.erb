@@ -4,7 +4,7 @@
     <span>Plan Name</span>
   </div>
   <div class="col-xs-3">
-    <input type="text" ng-model="newPlan.name" class="form-control" placeholder="Plan Name" />
+    <input type="text" ng-model="newPlan.name" class="form-control" placeholder="Plan Name" required />
   </div>
 </div>
 <div class="row">
@@ -22,7 +22,7 @@
     <span>Price in $</span>
   </div>
   <div class="col-xs-3">
-    <input type="text" ng-model="newPlan.price" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Price in $" />
+    <input type="text" ng-model="newPlan.price" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Price in $" required />
   </div>
 </div>
 <br />
