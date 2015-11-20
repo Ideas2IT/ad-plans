@@ -25,8 +25,20 @@ class FeaturesController < ApplicationController
   end
 
   def update
-    feature = Feature.find(params[:id])
-    respond_with feature.update_attributes(feature_params)
+    plan = Plan.find(params[:planId])
+    features = params.except(:action, :controller, :planId, :format, :feature)
+    plan_features = [];
+    plan.features.each do |value|
+      feature = Feature.find(value.id)
+      feature.update_attributes(name: feature.name, limit: features[feature.name], plan_id: plan.id)
+      plan_features.push(feature)
+    end
+    plan.features = plan_features
+    respond_to do |format|
+      Rails.logger.info(plan.features);
+      format.json {render :json => {features: plan.features}, :except => [:created_at, :updated_at]}
+      format.html
+    end
   end
 
   def destroy

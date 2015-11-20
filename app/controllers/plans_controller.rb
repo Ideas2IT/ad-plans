@@ -9,7 +9,11 @@ class PlansController < ApplicationController
   end
 
   def edit
-    respond_with Plan.find(params[:id])
+    #respond_with Plan.find(params[:id])
+    respond_to do |format|
+      format.json {render :json => Plan.find(params[:id]), :include => {:features => {:only => [:id, :name, :limit]}}, :except => [:created_at, :updated_at]}
+      format.html
+    end
   end
 
   def create

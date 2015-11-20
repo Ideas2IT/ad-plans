@@ -1,0 +1,28 @@
+<input type="hidden" id="planId" value="{{planId}}" ng-model="newFeature.plan_id"/>
+<div class="row">
+  <br />
+  <div class="col-xs-3">
+    <span>SMS Limit</span>
+  </div>
+  <div class="col-xs-3">
+    <input type="number" ng-model="newFeature.sms" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="SMS Limit" />
+  </div>
+</div>
+<div class="row">
+  <br />
+  <div class="col-xs-3">
+    <span>Email Limit</span>
+  </div>
+  <div class="col-xs-3">
+    <input type="text" ng-model="newFeature.email" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Email Limit" />
+  </div>
+</div>
+<div class="row">
+  <br />
+  <div class="col-xs-3">
+    <span>Post Limit</span>
+  </div>
+  <div class="col-xs-3">
+    <input type="text" ng-model="newFeature.post" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Post Limit" />
+  </div>
+</div>
