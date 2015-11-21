@@ -21,11 +21,13 @@ myApp.controller("plansController", ['$scope', 'Plan', 'Plans', function($scope,
     $scope.plans.push(plan);
     $scope.newPlan = {};
     $("#planForm").addClass('ng-hide');
-  };
+   };
 
   $scope.createNewPlan = function() {
     $scope.newPlan = {};
     $("#planForm").removeClass('ng-hide');
+    $("#plan_feature").addClass('ng-hide');
+    $("#update_plan_feature").addClass('ng-hide');
   };
 
   $scope.$on("new_feature", function (evt,  features) {
@@ -56,6 +58,7 @@ myApp.controller("plansController", ['$scope', 'Plan', 'Plans', function($scope,
       }
       $scope.newFeature = newFeature;
       $("#plan_feature").addClass('ng-hide');
+       $("#planForm").addClass('ng-hide');
       $("#update_plan_feature").removeClass('ng-hide');
     });
   };
